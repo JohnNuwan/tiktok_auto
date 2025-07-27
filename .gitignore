@@ -1,0 +1,72 @@
+# Configuration et clés API
+.env
+*.key
+*.pem
+
+# Base de données
+*.db
+*.sqlite
+*.sqlite3
+
+# Fichiers temporaires
+temp_subtitles/
+*.tmp
+*.temp
+*.log
+
+# Fichiers audio et vidéo générés
+datas/audios_En/
+datas/whisper_texts/
+datas/whisper_translations/
+datas/tts_outputs/
+datas/final_videos/
+datas/audio_translations/
+datas/translations/
+datas/tts/
+
+# Assets téléchargés
+assets/videos/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environnements virtuels
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Fichiers de test temporaires
+test_*.py
+*_test.py 

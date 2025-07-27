@@ -1,0 +1,33 @@
+# Core dependencies
+openai-whisper>=20231117
+requests>=2.31.0
+rich>=13.0.0
+python-dotenv>=1.0.0
+
+# Text-to-Speech
+elevenlabs>=0.2.24
+bark>=0.0.1
+
+# Video processing
+yt-dlp>=2023.12.30
+ffmpeg-python>=0.2.0
+
+# Database
+sqlite3
+
+# Translation
+googletrans>=4.0.0rc1
+
+# AI/ML
+ollama>=0.1.7
+
+# Utilities
+pathlib
+typing
+datetime
+json
+os
+sys
+subprocess
+tempfile
+uuid 
