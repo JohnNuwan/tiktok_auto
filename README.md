@@ -9,16 +9,18 @@ TikTok_Auto est un système complet d'automatisation pour créer des vidéos Tik
 ### 🎬 Montage Vidéo Avancé
 - **Sous-titres progressifs** : Affichage phrase par phrase synchronisé avec l'audio
 - **Durée fixe** : Exactement 70 secondes (1min10) optimale pour TikTok/Shorts
-- **Hook et Call-to-Action** : "🎯 ATTENTION !" et "👍 Likez et abonnez-vous !"
+- **Hook et Call-to-Action** : "🎯 ATTENTION !" et CTA audio à la fin de la vidéo
 - **Vidéos de fond intelligentes** : Sélection automatique basée sur le thème
+- **CTA audio** : Messages vocaux d'incitation à s'abonner générés automatiquement
 
 ### 🧠 Classification Thématique (Ollama)
 - **10 thèmes supportés** : motivation, succès, philosophie, discipline, etc.
 - **IA locale** : Utilise Ollama pour l'analyse automatique
 - **Organisation automatique** : Classifie et organise le contenu
 
-### 🎵 Synthèse Vocale (ElevenLabs)
-- **Qualité professionnelle** : Audio français naturel
+### 🎵 Synthèse Vocale (ElevenLabs + Bark)
+- **Qualité professionnelle** : Audio français naturel (ElevenLabs)
+- **CTA audio** : Génération automatique avec Bark (gratuit)
 - **Voix multiples** : Rachel, Domi, Bella, Sam, Adam, Echo
 - **Configuration centralisée** : Via variables d'environnement
 
@@ -28,9 +30,16 @@ TikTok_Auto est un système complet d'automatisation pour créer des vidéos Tik
 - **Gestion des doublons** : Évite les téléchargements répétés
 
 ### 📝 Recréation de Vidéos
-- **Application des nouveautés** : Hook, CTA, sous-titres, durée fixe
+- **Application des nouveautés** : Hook, CTA audio, sous-titres, durée fixe
 - **Recréation sélective** : Une vidéo ou toutes les vidéos
 - **Préservation des données** : Garde les traductions et TTS existants
+
+### 🎬 Générateur de Shorts Automatiques
+- **Organisation structurée** : Dossiers organisés par plateforme et type
+- **CTA audio intégrés** : Messages vocaux d'incitation à s'abonner
+- **Durée minimale** : 70 secondes (1min10) garantie
+- **Formats optimisés** : TikTok, YouTube Shorts, Instagram Reels
+- **Détection virale** : Algorithmes sophistiqués pour identifier les moments viraux
 
 ## 🚀 Installation
 
@@ -100,6 +109,11 @@ python main.py
 python auto_pipeline_complete.py
 ```
 
+### Générateur de Shorts
+```bash
+python montage/shorts_generator.py
+```
+
 ## 📋 Menu Principal
 
 Le système offre 14 options :
@@ -123,7 +137,7 @@ Le système offre 14 options :
 ```
 0-5s    : 🎯 ATTENTION ! (Hook)
 5-65s   : Contenu principal avec sous-titres progressifs
-65-70s  : 👍 Likez et abonnez-vous ! (CTA)
+65-70s  : CTA audio "Abonne-toi pour plus de contenu !" (parole)
 ```
 
 ## 📁 Structure du Projet
@@ -146,10 +160,12 @@ TikTok_Auto/
 ├── translation/             # Modules de traduction
 │   ├── whisper_simple.py    # Transcription
 │   ├── text_translator.py   # Traduction texte
-│   ├── tts.py              # Synthèse vocale
+│   ├── tts_simple.py       # Synthèse vocale
 │   └── audio_translator.py  # Traduction audio
 ├── montage/                # Modules de montage
-│   └── video_builder.py    # Création vidéos
+│   ├── video_builder.py    # Création vidéos
+│   ├── shorts_generator.py # Générateur de shorts
+│   └── viral_detector.py   # Détection virale
 ├── ollama/                 # Classification IA
 │   └── theme_classifier.py # Classification thématique
 ├── database/               # Base de données
@@ -160,8 +176,58 @@ TikTok_Auto/
     ├── whisper_translations/ # Textes traduits
     ├── tts_outputs/        # Audio français
     ├── final_videos/       # Vidéos finales
-    └── temp_subtitles/     # Sous-titres temporaires
+    ├── temp_subtitles/     # Sous-titres temporaires
+    └── shorts/             # Shorts générés
+        ├── final/          # Shorts finaux
+        ├── temp/           # Fichiers temporaires
+        ├── thumbnails/     # Miniatures
+        └── platforms/      # Shorts par plateforme
+            ├── tiktok/     # Shorts TikTok
+            ├── youtube/    # Shorts YouTube
+            └── instagram/  # Reels Instagram
 ```
+
+## 🎬 Générateur de Shorts Automatiques
+
+### ✨ Nouvelles Fonctionnalités (v2.2.0)
+
+- **CTA audio intégrés** : Messages vocaux d'incitation à s'abonner à la fin de la vidéo
+- **Organisation structurée** : Dossiers organisés par plateforme et type
+- **Durée minimale garantie** : 70 secondes (1min10) pour tous les shorts
+- **Format TikTok corrigé** : Format 9:16 (vertical) pour tous les shorts
+- **Détection virale améliorée** : +50 mots-clés viraux et algorithme sophistiqué
+- **Effets visuels avancés** : Zoom progressif, transitions fade, filtres de couleur
+- **Système d'analytics** : Suivi complet des performances (vues, likes, partages)
+- **Interface analytics** : CLI pour consulter les statistiques et rapports
+
+### 🎯 Formats Supportés
+
+| Plateforme | Format | Durée | Effets | CTA Audio |
+|------------|--------|-------|--------|-----------|
+| **TikTok** | 9:16 | 70s+ | Zoom, transitions, filtres | ✅ |
+| **YouTube Shorts** | 9:16 | 70s+ | Zoom, transitions | ✅ |
+| **Instagram Reels** | 9:16 | 70s+ | Zoom, transitions, filtres | ✅ |
+
+### 📁 Organisation des Shorts
+
+```
+datas/shorts/
+├── final/              # Shorts finaux prêts à publier
+├── temp/               # Fichiers temporaires de traitement
+├── thumbnails/         # Miniatures générées
+└── platforms/          # Shorts organisés par plateforme
+    ├── tiktok/         # Shorts TikTok
+    ├── youtube/        # Shorts YouTube
+    └── instagram/      # Reels Instagram
+```
+
+### 🎤 CTA Audio
+
+Les Call-to-Action sont maintenant générés en audio et ajoutés à la fin de la vidéo :
+
+- **TikTok** : "Abonne-toi pour plus de contenu comme ça !", "Suis-moi pour du contenu exclusif !"
+- **YouTube** : "Abonne-toi et active la cloche !", "Like et abonne-toi pour plus de contenu !"
+- **Instagram** : "Suis-moi pour plus de contenu !", "Abonne-toi et active les notifications !"
 
 ## 🔧 Configuration Avancée
 
@@ -201,6 +267,12 @@ TikTok_Auto/
 1. Recréation (Option 13) : Appliquez les nouvelles fonctionnalités
 2. Sélection : Une vidéo ou toutes les vidéos
 
+### Pour générer des shorts :
+1. Lancez le générateur de shorts : `python montage/shorts_generator.py`
+2. Choisissez la plateforme (TikTok, YouTube, Instagram)
+3. Sélectionnez une vidéo ou créez en lot
+4. Les shorts seront organisés automatiquement dans les dossiers appropriés
+
 ## 🎯 Conseils d'Utilisation
 
 ### Performance
@@ -208,11 +280,12 @@ TikTok_Auto/
 - **Classification** : Faites la classification en premier
 - **Fonds vidéos** : Téléchargez les fonds avant le montage
 - **TTS** : ElevenLabs offre une qualité supérieure
+- **CTA audio** : Bark est utilisé automatiquement pour éviter les quotas
 
 ### Engagement
 - **Hook** : Capte l'attention dès les premières secondes
 - **Sous-titres** : Encourage la lecture et améliore l'accessibilité
-- **CTA** : Guide l'action (like, abonnement)
+- **CTA audio** : Messages vocaux naturels pour l'engagement
 - **Durée** : 70 secondes optimale pour TikTok/Shorts
 
 ## 🎉 Résultat Final
@@ -224,7 +297,8 @@ Le système génère des vidéos TikTok/YouTube Shorts optimisées :
 - **Vidéo** : Fonds thématiques automatiques avec boucle
 - **Sous-titres** : Progressifs, synchronisés, stylisés
 - **Hook** : "🎯 ATTENTION !" pour capturer l'attention
-- **CTA** : "👍 Likez et abonnez-vous !" pour l'engagement
+- **CTA audio** : Messages vocaux d'incitation à s'abonner
+- **Organisation** : Dossiers structurés par plateforme
 - **Prêt à publier** : Optimisé pour les algorithmes TikTok/YouTube
 
 ## 📚 Documentation
@@ -246,4 +320,4 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ---
 
-**🎵 TikTok_Auto** - Créez du contenu français automatiquement avec sous-titres et engagement optimisé ! 🚀 
+**🎵 TikTok_Auto** - Créez du contenu français automatiquement avec sous-titres et engagement optimisé ! 

@@ -158,8 +158,8 @@ class VideoDatabase:
                 cursor = conn.cursor()
                 cursor.execute('''
                     INSERT OR REPLACE INTO videos 
-                    (video_id, title, description, duration, upload_date, view_count, channel_id)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    (video_id, title, description, duration, upload_date, view_count, channel_id, status)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (
                     video_data.get('video_id'),
                     video_data.get('title'),
@@ -167,12 +167,24 @@ class VideoDatabase:
                     video_data.get('duration'),
                     video_data.get('upload_date'),
                     video_data.get('view_count'),
-                    video_data.get('channel_id')
+                    video_data.get('channel_id'),
+                    video_data.get('status', 'pending') # Ajout du statut
                 ))
                 conn.commit()
                 return True
         except Exception as e:
             print(f"❌ Erreur lors de l'ajout de la vidéo: {e}")
+            return False
+
+    def video_exists(self, video_id: str) -> bool:
+        """Vérifie si une vidéo existe déjà dans la base de données."""
+        try:
+            with sqlite3.connect(self.db_path) as conn:
+                cursor = conn.cursor()
+                cursor.execute("SELECT 1 FROM videos WHERE video_id = ?", (video_id,))
+                return cursor.fetchone() is not None
+        except Exception as e:
+            print(f"❌ Erreur lors de la vérification de la vidéo: {e}")
             return False
     
     def add_audio_file(self, video_id: str, file_path: str, file_size: Optional[int] = None, 

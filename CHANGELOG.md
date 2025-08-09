@@ -1,115 +1,71 @@
-# Changelog - TikTok Auto
+# Changelog
 
 Toutes les modifications notables de ce projet seront documentées dans ce fichier.
 
-## [2.0.0] - 2024-12-19
+## [2.2.0] - 2024-12-19
 
-### 🎉 Ajouté
-- **Système de traduction audio complet** avec Whisper et Google Translate
-- **Module Whisper Simple** (`translation/whisper_simple.py`) pour transcription audio
-- **Module Text Translator** (`translation/text_translator.py`) pour traduction anglais→français
-- **Base de données optimisée** avec tables `whisper_texts` et `whisper_translations`
-- **Interface CLI moderne** avec Rich pour tous les modules
-- **Traitement par lots** avec limites configurables (20 fichiers par défaut)
-- **Statistiques en temps réel** pour monitoring
-- **Sauvegarde en base de données** (plus de fichiers .txt)
-- **Scripts de correction** pour les tables de base de données
+### ✅ Ajouté
+- **CTA audio intégrés** : Messages vocaux d'incitation à s'abonner à la fin des shorts
+- **Organisation structurée des shorts** : Dossiers organisés par plateforme et type
+- **Durée minimale garantie** : 70 secondes (1min10) pour tous les shorts
+- **Générateur de shorts automatiques** : Interface CLI complète pour la génération de shorts
+- **Détection virale améliorée** : Algorithmes sophistiqués pour identifier les moments viraux
+- **Effets visuels avancés** : Zoom progressif, transitions fade, filtres de couleur
+- **Système d'analytics** : Suivi complet des performances (vues, likes, partages)
+- **Interface analytics** : CLI pour consulter les statistiques et rapports
+- **Nettoyage automatique** : Suppression des fichiers temporaires
+- **Miniatures automatiques** : Génération de thumbnails pour les shorts
 
-### 🔄 Modifié
-- **Limites de traitement** : Passées de 5 à 20 fichiers par défaut
-- **Structure de la base de données** : Optimisée avec index et relations
-- **Workflow de traduction** : Simplifié en 2 étapes distinctes
-- **Documentation** : Complètement mise à jour avec guides détaillés
-
-### 🐛 Corrigé
-- **Problème de traduction** : Whisper traduit maintenant correctement en anglais puis Google Translate en français
-- **Erreurs de base de données** : Tables recréées avec la bonne structure
-- **Limitations de fichiers** : Suppression des limites trop restrictives
-- **Sauvegarde des données** : Centralisation en base de données
+### 🔧 Modifié
+- **Structure des dossiers shorts** : Organisation en `final/`, `temp/`, `thumbnails/`, `platforms/`
+- **CTA implementation** : Passage des sous-titres aux messages audio
+- **Durée des shorts** : Minimum 70 secondes garanti pour tous les formats
+- **Gestion des erreurs** : Meilleure gestion des erreurs FFmpeg et TTS
+- **Documentation** : Mise à jour complète avec les nouvelles fonctionnalités
 
 ### 🗑️ Supprimé
-- **Fichiers .txt** : Remplacement par sauvegarde en base de données
-- **Dossier de sortie** : `datas/whisper_texts/` n'est plus nécessaire
-- **Colonne text_path** : Supprimée de la table `whisper_texts`
+- **CTA sous-titres** : Remplacés par des messages audio
+- **Ancienne organisation** : Structure de dossiers non organisée
 
-### 📊 Statistiques
-- **20+ fichiers audio** transcrits avec Whisper
-- **20+ traductions françaises** générées
-- **100% de réussite** pour les traductions
-- **Temps de traitement** : ~2-3 minutes par lot de 20 fichiers
+## [2.1.0] - 2024-12-18
 
-## [1.5.0] - 2024-12-18
+### ✅ Ajouté
+- **Format TikTok corrigé** : Format 9:16 (vertical) pour tous les shorts
+- **Durées optimisées** : Shorts de 15-60 secondes (vrais shorts)
+- **Découpage automatique** : Les vidéos longues sont automatiquement découpées
+- **Détection virale améliorée** : +50 mots-clés viraux et algorithme sophistiqué
+- **Effets visuels avancés** : Zoom progressif, transitions fade, filtres de couleur
+- **Système d'analytics** : Suivi complet des performances (vues, likes, partages)
+- **Interface analytics** : CLI pour consulter les statistiques et rapports
 
-### 🎉 Ajouté
-- **Module Whisper Translator** initial avec extraction audio depuis vidéos
-- **Support VTT** pour les sous-titres existants
-- **Interface CLI** basique pour Whisper
+### 🔧 Modifié
+- **Architecture** : Refactorisation complète en modules spécialisés
+- **Base de données** : Nouvelles tables pour Whisper, traductions, TTS, shorts
+- **Workflow** : Pipeline simplifié et optimisé
+- **Interface** : Menu principal mis à jour
 
-### 🔄 Modifié
-- **Workflow de traduction** : Intégration de Whisper dans le pipeline
+### 🗑️ Supprimé
+- **Modules obsolètes** : Anciens modules de traduction et TTS
+- **Fichiers temporaires** : Scripts de migration et de test
 
-### 🐛 Corrigé
-- **Problèmes d'extraction audio** : Support FFmpeg amélioré
+## [1.5.0] - 2024-08-06
 
-## [1.0.0] - 2024-12-17
+### ✅ Ajouté
+- **Support ElevenLabs** : Intégration TTS haute qualité
+- **Interface graphique** : GUI avec CustomTkinter
+- **Gestion des erreurs** : Meilleure gestion des exceptions
+- **Documentation** : Guides d'utilisation
 
-### 🎉 Ajouté
-- **Système de téléchargement YouTube** avec yt-dlp
-- **Base de données SQLite** pour gestion des vidéos
-- **Extraction audio** automatique en MP3
-- **Traduction VTT** avec Google Translate
-- **Module TTS** avec Bark et ElevenLabs
-- **Interface Streamlit** pour visualisation
-- **Tests automatisés** du système
+### 🔧 Modifié
+- **TTS** : Support multi-moteurs (Bark + ElevenLabs)
+- **Interface** : Amélioration de l'UX
 
-### 📊 Statistiques Initiales
-- **Base de données** : Structure complète avec relations
-- **Modules de traduction** : VTT et TTS fonctionnels
-- **Interface utilisateur** : CLI et web disponibles
+## [1.0.0] - 2024-08-05
 
----
-
-## Format du Changelog
-
-Ce projet suit le [Semantic Versioning](https://semver.org/).
-
-### Types de changements
-- **🎉 Ajouté** : Nouvelles fonctionnalités
-- **🔄 Modifié** : Changements dans les fonctionnalités existantes
-- **🐛 Corrigé** : Corrections de bugs
-- **🗑️ Supprimé** : Fonctionnalités supprimées
-- **📊 Statistiques** : Données de performance
-
-### Structure des versions
-- **MAJOR.MINOR.PATCH**
-  - **MAJOR** : Changements incompatibles avec les versions précédentes
-  - **MINOR** : Nouvelles fonctionnalités compatibles
-  - **PATCH** : Corrections de bugs compatibles
-
----
-
-## Prochaines Versions
-
-### [2.1.0] - Planifié
-- **Interface web** pour visualisation des traductions
-- **Traitement parallèle** pour améliorer les performances
-- **Cache intelligent** pour les traductions
-- **Support multi-langues** (espagnol, allemand, etc.)
-
-### [2.2.0] - Planifié
-- **Intégration TTS avancée** avec plus de moteurs
-- **Système de qualité** pour évaluer les traductions
-- **Export de données** (JSON, CSV, Excel)
-- **API REST** pour intégration externe
-
-### [3.0.0] - Planifié
-- **Pipeline complet** : Téléchargement → Traduction → TTS → Montage
-- **Interface graphique** complète
-- **Système de plugins** pour extensions
-- **Cloud integration** (AWS, Google Cloud)
-
----
-
-**Dernière mise à jour** : 2024-12-19  
-**Mainteneur** : TikTok Auto Team  
-**Statut** : ✅ Actif et maintenu 
+### ✅ Ajouté
+- **Transcription audio** : Support Whisper
+- **Traduction** : Google Translate API
+- **TTS** : Support Bark
+- **Base de données** : Stockage SQLite
+- **Interface CLI** : Menu interactif
+- **Gestion des fichiers** : Organisation automatique 

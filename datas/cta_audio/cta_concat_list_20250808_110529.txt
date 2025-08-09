@@ -1,0 +1,4 @@
+file 'C:/Users/nandi/Desktop/TikTok_Auto/datas/tts_outputs/bark_v2_fr_speaker_7_51340579.wav'
+file 'C:/Users/nandi/Desktop/TikTok_Auto/datas/tts_outputs/bark_v2_fr_speaker_7_9b287cfb.wav'
+file 'C:/Users/nandi/Desktop/TikTok_Auto/datas/tts_outputs/bark_v2_fr_speaker_7_6fecb31a.wav'
+file 'C:/Users/nandi/Desktop/TikTok_Auto/datas/tts_outputs/bark_v2_fr_speaker_7_c51ec8d2.wav'
